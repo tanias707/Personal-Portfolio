@@ -2,220 +2,183 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tania's Portfolio</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tania Shaik | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Basic Styling */
+    :root {
+      --bg-color: #f4f4f9;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --accent: #8eaccd;
+      --text: #222;
+      --white: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #405719;
-      background-image: url('https://www.transparenttextures.com/patterns/green-cup.png');
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f9dede, #ffeaea);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .navbar {
-      background-color: #333;
-      padding: 1rem;
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px var(--shadow);
+      padding: 1rem 2rem;
       position: sticky;
       top: 0;
-      z-index: 1000;
-    }
-    .nav-list {
-      display: flex;
-      justify-content: space-around;
-      list-style: none;
-    }
-    .nav-list a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
+      z-index: 100;
     }
 
-    .section {
-      padding: 4rem 2rem;
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .heading {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
 
-    .grey-box {
-      background-color: #faf7f7;
-      border-radius: 10px;
-      padding: 2rem;
-      margin: 1rem 0;
-    }
-
-    .profile-box {
-      display: inline-block;
-      padding: 1rem;
-      border: 2px solid #333;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-
-    .profile-pic {
-      width: 150px;
-      border-radius: 50%;
-    }
-
-    .main-heading {
-      font-size: 4rem;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .about-box {
-      background-color: #f5f5f5;
+    .intro, .about, .projects, .achievements, .contact {
+      background: var(--card-bg);
       border-radius: 15px;
       padding: 2rem;
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 1rem auto;
-      color: #333;
+      box-shadow: 0 4px 20px var(--shadow);
+      margin-bottom: 3rem;
     }
 
-    .skills-list {
-      list-style: none;
+    .intro h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .achievements ul, .skills ul {
+      list-style: disc;
+      padding-left: 1.2rem;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
+
     .project-card {
-      background-color: #eee;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(82, 81, 78, 0.1);
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px var(--shadow);
+      transition: transform 0.3s;
     }
 
-    .footer-container {
-      background-color: #333;
-      color: white;
-      padding: 2rem;
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      background: #e7f0f9;
       text-align: center;
-    }
-
-    .social-links {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .social-links a {
-      text-decoration: none;
-      color: white;
-      transition: color 0.3s;
-    }
-
-    .social-links a:hover {
-      color: yellow;
+      padding: 2rem;
+      color: #333;
     }
 
     @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      .profile-pic {
-        width: 100px;
-      }
-      .main-heading {
+      .intro h1 {
         font-size: 2rem;
       }
-      .about-box {
-        font-size: 1rem;
+      .heading {
+        font-size: 2rem;
       }
-    }
-
-    .intro h1 {
-      animation: spin3D 5s infinite;
-    }
-    @keyframes spin3D {
-      0% { transform: rotateY(0deg); }
-      50% { transform: rotateY(180deg); }
-      100% { transform: rotateY(360deg); }
-    }
-
-    .project-card {
-      animation: cardZoom 3s infinite alternate;
-    }
-    @keyframes cardZoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
     }
   </style>
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <ul class="nav-list">
+    <nav>
+      <ul>
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Introduction Section -->
-  <section id="about" class="section">
-    <div class="intro">
-      <h1 class="main-heading">Tania's Portfolio</h1>
-      <p class="about-box">
-        An enthusiastic and innovative coder with a strong focus on web development, guided by the support of various mentors.  
-        Currently a first-year BTech CSE student at IGDTUW, proficient in HTML, CSS, and adept at creating engaging digital content.  
-        Recognized for ingenuity, teamwork, and leadership as a member of Aarohan IGDTUW and the Tarannum Music Society.  
-        Committed to crafting meaningful projects like HerSafar and exploring new horizons in Web3 development.  
-      </p>
-      <div class="profile-box">
-        <img src="profile.jpg" alt="Profile Picture" class="profile-pic" />
+  <section class="intro">
+    <h1>Tania Shaik</h1>
+    <p>A 2nd-year CSE student at IGDTUW, growing in the world of tech with every line of code. Passionate about impactful ideas, design, and development that make a difference.</p>
+  </section>
+
+  <section id="about" class="about">
+    <h2 class="heading">About Me</h2>
+    <p>I’m currently exploring full-stack development, open-source contributions, and hackathons. I believe in building inclusive tech and love combining creativity with code. While I'm still sharpening my technical skills, I’ve already begun contributing to meaningful projects and initiatives within and beyond college.</p>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2 class="heading">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <strong>Her Safar</strong>
+        <p>A women’s safety travel companion app that enables safe shared commuting experiences.</p>
+      </div>
+      <div class="project-card">
+        <strong>Gym Website</strong>
+        <p>Designed and built a sleek fitness center website as part of the TechNeeds Challenge.</p>
       </div>
     </div>
   </section>
 
-  <!-- Education Section -->
-  <section id="education" class="section grey-box">
-    <h2>Education</h2>
-    <p>- Studied till 10th at P Obul Reddy Public School, Hyderabad<br>- 12th at Amity International School, Mayur Vihar, Delhi</p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="section grey-box">
-    <h2>Skills</h2> 
-    <ul class="skills-list">
-      <li>- Experience with CSS and HTML</li>
-      <li>- Participated in ideathons, gaining experience with Figma</li>
+  <section id="achievements" class="achievements">
+    <h2 class="heading">Achievements & Participation</h2>
+    <ul>
+      <li>3rd Prize - <strong>InnovEarth Ideathon</strong> at NSUT</li>
+      <li>Finalist - <strong>PitchDesk Competition</strong> at IIIT Delhi</li>
+      <li>Finalist - Upcoming Hackathon at IIIT</li>
     </ul>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="section grey-box">
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">- Her Safar - Empowers women to navigate their daily commutes with confidence and companionship</div>
-      <div class="project-card">- Gym Website - Developed as part of the TechNeeds Challenge</div>
-    </div>
+  <section id="contact" class="contact">
+    <h2 class="heading">Get in Touch</h2>
+    <p>LinkedIn: <a href="https://linkedin.com/in/taniaaashaik" target="_blank">taniaaashaik</a></p>
+    <p>GitHub: <a href="https://github.com/taniaaashaik" target="_blank">taniaaashaik</a></p>
+    <p>Instagram: <a href="https://instagram.com/taniaaashaik" target="_blank">@taniaaashaik</a></p>
   </section>
 
-  <!-- Footer Section -->
-  <footer id="contact">
-    <div class="footer-container">
-      <p>Connect with me on social media!</p>
-      <ul class="social-links">
-        <li><a href="https://linkedin.com">LinkedIn</a></li>
-        <li><a href="https://github.com">GitHub</a></li>
-        <li><a href="https://instagram.com/taniaaashaik">Instagram</a></li>
-      </ul>
-    </div>
+  <footer>
+    <p>© 2025 Tania Shaik | Portfolio</p>
   </footer>
 </body>
 </html>
